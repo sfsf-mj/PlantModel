@@ -6,7 +6,7 @@ import numpy as np
 app = Flask(__name__)
 
 # تحميل النموذج
-model = tf.keras.models.load_model("../plant_model.keras")
+model = tf.keras.models.load_model("plant_model.keras")
 
 # def preprocess_image(image):
 #     # تغيير حجم الصورة ليناسب النموذج
