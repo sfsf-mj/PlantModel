@@ -3,3 +3,4 @@ uvicorn
 tensorflow
 numpy
 Pillow
+flask
