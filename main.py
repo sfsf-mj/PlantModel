@@ -48,4 +48,5 @@ def predict():
     return jsonify(response)
 
 if __name__ == '__main__':
-    app.run(debug=True) # لمن يترفع مفروض اشيل debug=True
+    app.run() # لمن يترفع مفروض اشيل debug=True
+    #app.run(debug=True) # لمن يترفع مفروض اشيل debug=True
