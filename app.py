@@ -2,25 +2,18 @@ from flask import Flask, request, jsonify
 import tensorflow as tf
 from PIL import Image
 import numpy as np
+import os
 
 app = Flask(__name__)
 
 # تحميل النموذج
 model = tf.keras.models.load_model("plant_model.keras")
 
-# def preprocess_image(image):
-#     # تغيير حجم الصورة ليناسب النموذج
-#     image = image.resize((256, 256))  # التعديل على حسب حجم إدخال النموذج
-#     image = np.array(image) / 255.0  # تحويل الصورة إلى مصفوفة وتطبيعها
-#     image = np.expand_dims(image, axis=0)
-#     return image
-
 # كود المعالجة السابقه مفروض يتعدل على حسب أخر نموذج (معلوووومه مهههههمه) لازم تتعدل
 def preprocess_image(image):
     image = image.resize((224, 224))  # تغيير حجم الصورة
     image_array = np.array(image) / 255.0  # تطبيع القيم
     return image_array.reshape(1, 224, 224, 3)  # إعادة تشكيل البيانات
-
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -47,6 +40,3 @@ def predict():
     }
     return jsonify(response)
 
-if __name__ == '__main__':
-    app.run() # لمن يترفع مفروض اشيل debug=True
-    #app.run(debug=True) # لمن يترفع مفروض اشيل debug=True
