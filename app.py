@@ -29,7 +29,7 @@ def predict():
         return jsonify({"error": "نوع الملف غير مدعوم. يرجى تحميل صورة."}), 400
 
     if not os.path.exists("plant_model.keras"):
-    return jsonify({"error": "النموذج غير موجود!"}), 500
+        return jsonify({"error": "النموذج غير موجود!"}), 500
 
     image = Image.open(file.stream)  # فتح الصورة
     preprocessed_image = preprocess_image(image)
