@@ -17,6 +17,9 @@ def preprocess_image(image):
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    print(request.method)
+    print(request.files)
+
     if 'file' not in request.files:
         return jsonify({"error": "لم يتم إرسال ملف"}), 400
     
@@ -24,6 +27,9 @@ def predict():
 
     if not file.filename.endswith(('.png', '.jpg', '.jpeg')):
         return jsonify({"error": "نوع الملف غير مدعوم. يرجى تحميل صورة."}), 400
+
+    if not os.path.exists("plant_model.keras"):
+    return jsonify({"error": "النموذج غير موجود!"}), 500
 
     image = Image.open(file.stream)  # فتح الصورة
     preprocessed_image = preprocess_image(image)
@@ -38,5 +44,6 @@ def predict():
         "class_index": int(class_index),
         "confidence": float(confidence)
     }
+    
     return jsonify(response)
 
