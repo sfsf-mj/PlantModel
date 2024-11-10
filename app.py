@@ -17,8 +17,9 @@ def preprocess_image(image):
 
 @app.route('/predict', methods=['POST'])
 def predict():
-    print(request.method)
-    print(request.files)
+    print("Request method mj:", request.method)
+    print("Request files:", request.files)
+
 
     if 'file' not in request.files:
         return jsonify({"error": "لم يتم إرسال ملف"}), 400
@@ -47,3 +48,5 @@ def predict():
     
     return jsonify(response)
 
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
