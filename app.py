@@ -7,7 +7,7 @@ import os
 app = Flask(__name__)
 
 # تحميل النموذج
-model = tf.keras.models.load_model("plant_model.keras")
+model = tf.keras.models.load_model("plantodel.keras")
 
 # كود المعالجة السابقه مفروض يتعدل على حسب أخر نموذج (معلوووومه مهههههمه) لازم تتعدل
 def preprocess_image(image):
